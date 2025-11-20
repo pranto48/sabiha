@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sabiha Art Gallery | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080920;
+      --gradient-one: #ff5ac3;
+      --gradient-two: #80ffea;
+      --text-light: #f6f7fb;
+      --text-muted: rgba(246, 247, 251, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --accent: #ffe05c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, rgba(255, 106, 255, 0.25), transparent 55%),
+                  radial-gradient(circle at 20% 20%, rgba(59, 255, 253, 0.4), transparent 45%),
+                  var(--bg);
+      color: var(--text-light);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: relative;
+      padding: 3rem 1.5rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--gradient-one), transparent 60%);
+      filter: blur(60px);
+      opacity: 0.6;
+      z-index: -1;
+      animation: pulse 10s infinite alternate;
+    }
+
+    header::after {
+      right: -120px;
+      top: -80px;
+    }
+
+    header::before {
+      left: -150px;
+      bottom: -100px;
+      background: radial-gradient(circle, var(--gradient-two), transparent 60%);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.2rem;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .language-switch {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 999px;
+      padding: 0.25rem;
+      display: inline-flex;
+      gap: 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .language-switch button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      background: transparent;
+      color: var(--text-light);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .language-switch button.active {
+      background: linear-gradient(135deg, var(--gradient-one), var(--gradient-two));
+      color: var(--bg);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      max-width: 760px;
+      margin: 0.5rem auto;
+      color: var(--text-muted);
+    }
+
+    .hero-stats {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      background: linear-gradient(135deg, rgba(255, 90, 195, 0.15), rgba(128, 255, 234, 0.15));
+      padding: 1.25rem 1.75rem;
+      border-radius: 18px;
+      min-width: 170px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-stat span:first-child {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    section {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      background: var(--card-bg);
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-grid,
+    .gallery-grid,
+    .shop-grid,
+    .timeline {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .about-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      align-items: start;
+    }
+
+    .about-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 24px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.35);
+    }
+
+    .about-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .about-card ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      background: #000;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item:hover {
+      transform: rotateX(8deg) rotateY(-8deg) scale(1.02);
+      box-shadow: 0 35px 85px rgba(0, 0, 0, 0.65);
+    }
+
+    .gallery-item span {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+      font-weight: 600;
+    }
+
+    .shop-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .shop-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 24px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.35s ease;
+    }
+
+    form label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    input,
+    textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.75rem 1rem;
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--text-light);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .timeline {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .timeline-card {
+      padding: 1.5rem;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 4px solid var(--gradient-one);
+    }
+
+    .timeline-card h3 {
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--gradient-one), var(--gradient-two));
+      color: var(--bg);
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+      text-decoration: none;
+    }
+
+    .floating-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .floating-shapes span {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(255, 90, 195, 0.55), rgba(128, 255, 234, 0.35));
+      filter: blur(2px);
+      border-radius: 35% 65% 60% 40% / 50% 45% 55% 50%;
+      animation: float 18s ease-in-out infinite;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .testimonial {
+      padding: 1.3rem;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-80px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shapes" aria-hidden="true"></div>
+  <header>
+    <div class="top-bar">
+      <nav>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+        <a href="gallery.html" data-i18n="nav.galleryPage">Gallery Page</a>
+        <a href="#shop" data-i18n="nav.shop">Shop</a>
+        <a href="#timeline" data-i18n="nav.journey">Journey</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language toggle">
+        <button type="button" data-lang-btn="en" class="active">EN</button>
+        <button type="button" data-lang-btn="bd">BD</button>
+      </div>
+    </div>
+    <div class="hero-content">
+      <p data-i18n="hero.intro">Hi! I am</p>
+      <h1 data-i18n="hero.title">Sabiha • Emerging Bangladeshi Art Explorer</h1>
+      <p data-i18n="hero.description">
+        I am a 13-year-old Class 8 artist from Ashulia, Dhaka. I combine doodles, photography,
+        3D-inspired sketches, and bold colours to celebrate the stories of my neighbourhood and the
+        dreams of Generation Alpha. Welcome to my GitHub-hosted mini gallery!
+      </p>
+      <div class="hero-stats" role="list">
+        <div class="hero-stat" role="listitem">
+          <span>120+</span>
+          <small data-i18n="stats.sketches">Sketchbook Studies</small>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <span>35</span>
+          <small data-i18n="stats.photos">Photo Art Prints</small>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <span>5</span>
+          <small data-i18n="stats.exhibits">Community Exhibits</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2 data-i18n="about.heading">About Sabiha</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 data-i18n="about.storyTitle">The Story</h3>
+          <p data-i18n="about.storyText">
+            Growing up beside the Turag River in Ashulia, Sabiha paints vibrant skies and futuristic
+            cities from the stories she hears at school. Her art blends Bangladeshi folk motifs with
+            neon gradients inspired by digital games. She loves experimenting with composition,
+            turning everyday objects into sci-fi storytelling props.
+          </p>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="about.missionTitle">Mission</h3>
+          <p data-i18n="about.missionText">
+            "Art is my way to protect memories." Sabiha dreams of building a community studio where
+            teens can learn drawing, storyboarding, and 3D animation using free, open-source tools.
+            Hosting her gallery on GitHub lets her share process files and inspire other curious
+            builders around the world.
+          </p>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="about.skillsTitle">Skills in Progress</h3>
+          <ul>
+            <li data-i18n="about.skill1">Digital sketching on Android apps</li>
+            <li data-i18n="about.skill2">Stop-motion experiments with clay models</li>
+            <li data-i18n="about.skill3">Three.js fundamentals for playful 3D scenes</li>
+            <li data-i18n="about.skill4">Color theory and storytelling workshops</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2 data-i18n="gallery.heading">Creative Gallery</h2>
+      <p data-i18n="gallery.description">
+        Swipe through the colourful "shabiha" snapshots—each artwork is captured with homemade
+        lighting and a playful mix of craft paper, holographic foils, and photo overlays.
+      </p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Neon skyline art">
+          <span data-i18n="gallery.item1">Neon Skyline Dreams</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Digital collage">
+          <span data-i18n="gallery.item2">Code &amp; Canvas</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1487412720507-9d352d317fd1?auto=format&fit=crop&w=900&q=80" alt="Colorful river art">
+          <span data-i18n="gallery.item3">Dhaka Neon River</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt="3D character art">
+          <span data-i18n="gallery.item4">Future Folk Dancer</span>
+        </div>
+      </div>
+      <a class="cta-btn" href="gallery.html" data-i18n="gallery.button">Explore the dedicated gallery page</a>
+    </section>
+
+    <section id="shop">
+      <h2 data-i18n="shop.heading">Shop Prints &amp; Digital Downloads</h2>
+      <p data-i18n="shop.description">Support Sabiha's next art camp by purchasing limited edition pieces.</p>
+      <div class="shop-grid">
+        <article class="shop-card">
+          <h3 data-i18n="shop.product1.title">Moonlit Ashulia</h3>
+          <p data-i18n="shop.product1.text">High-resolution digital photo art, printable up to A2.</p>
+          <span class="price">$12</span>
+          <button class="cta-btn" data-i18n="shop.product1.cta">Buy Digital Copy</button>
+        </article>
+        <article class="shop-card">
+          <h3 data-i18n="shop.product2.title">River of Stories</h3>
+          <p data-i18n="shop.product2.text">Matte photo paper print, hand-signed with a mini doodle.</p>
+          <span class="price">$25</span>
+          <button class="cta-btn" data-i18n="shop.product2.cta">Order Print</button>
+        </article>
+        <article class="shop-card">
+          <h3 data-i18n="shop.product3.title">Pixel Folk Pack</h3>
+          <p data-i18n="shop.product3.text">Bundle of 5 mobile wallpapers with folk-inspired gradients.</p>
+          <span class="price">$9</span>
+          <button class="cta-btn" data-i18n="shop.product3.cta">Download Pack</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2 data-i18n="timeline.heading">Life History Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <h3 data-i18n="timeline.card1.title">2016 · First Brush</h3>
+          <p data-i18n="timeline.card1.text">Painted Eid lanterns with cousins and fell in love with colour.</p>
+        </div>
+        <div class="timeline-card">
+          <h3 data-i18n="timeline.card2.title">2019 · School Wall Art</h3>
+          <p data-i18n="timeline.card2.text">Led classmates to paint a mural highlighting Ashulia's rivers.</p>
+        </div>
+        <div class="timeline-card">
+          <h3 data-i18n="timeline.card3.title">2022 · Animation Discovery</h3>
+          <p data-i18n="timeline.card3.text">Learned the basics of Blender and stop-motion miniatures.</p>
+        </div>
+        <div class="timeline-card">
+          <h3 data-i18n="timeline.card4.title">2024 · GitHub Launch</h3>
+          <p data-i18n="timeline.card4.text">Published the Sabiha Art Gallery project with downloadable PSDs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="why.heading">Why 3D Animation?</h2>
+      <p data-i18n="why.text">
+        Sabiha is fascinated by 3D forms because they let her sculpt emotions in mid-air. She mixes
+        hand-drawn textures with simple cubes and spheres, then animates them to float across scenes
+        representing Dhaka's rooftops. This website uses subtle 3D-inspired hover effects to echo her
+        creative voice.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-i18n="kind.heading">Kind Words</h2>
+      <div class="testimonials">
+        <blockquote class="testimonial">
+          <span data-i18n="kind.quote1">"Sabiha turns everyday school memories into futuristic postcards."</span>
+          <footer data-i18n="kind.by1">— Art Teacher, Class 8</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <span data-i18n="kind.quote2">"Her GitHub uploads help my kids learn lighting tricks!"</span>
+          <footer data-i18n="kind.by2">— Community Mentor</footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <span data-i18n="kind.quote3">"Vibrant, fearless, and super curious about animation and storytelling."</span>
+          <footer data-i18n="kind.by3">— Cousin &amp; Collaborator</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 data-i18n="contact.heading">Contact</h2>
+      <p data-i18n="contact.description">Say hi or request a commission:</p>
+      <form class="about-grid" netlify>
+        <label>
+          <span data-i18n="contact.name">Name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          <span data-i18n="contact.email">Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label class="about-card" style="grid-column: 1 / -1;">
+          <span data-i18n="contact.message">Message</span>
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button class="cta-btn" type="submit" data-i18n="contact.button">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <span data-i18n="footer.tagline">Designed with love in Ashulia, Dhaka • Hosted on GitHub Pages</span>
+    <br />© <span id="year"></span> Sabiha
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        'nav.home': 'Home',
+        'nav.about': 'About',
+        'nav.gallery': 'Gallery',
+        'nav.galleryPage': 'Gallery Page',
+        'nav.shop': 'Shop',
+        'nav.journey': 'Journey',
+        'nav.contact': 'Contact',
+        'hero.intro': 'Hi! I am',
+        'hero.title': 'Sabiha • Emerging Bangladeshi Art Explorer',
+        'hero.description': 'I am a 13-year-old Class 8 artist from Ashulia, Dhaka. I combine doodles, photography, 3D-inspired sketches, and bold colours to celebrate the stories of my neighbourhood and the dreams of Generation Alpha. Welcome to my GitHub-hosted mini gallery!',
+        'stats.sketches': 'Sketchbook Studies',
+        'stats.photos': 'Photo Art Prints',
+        'stats.exhibits': 'Community Exhibits',
+        'about.heading': 'About Sabiha',
+        'about.storyTitle': 'The Story',
+        'about.storyText': 'Growing up beside the Turag River in Ashulia, Sabiha paints vibrant skies and futuristic cities from the stories she hears at school. Her art blends Bangladeshi folk motifs with neon gradients inspired by digital games. She loves experimenting with composition, turning everyday objects into sci-fi storytelling props.',
+        'about.missionTitle': 'Mission',
+        'about.missionText': '"Art is my way to protect memories." Sabiha dreams of building a community studio where teens can learn drawing, storyboarding, and 3D animation using free, open-source tools. Hosting her gallery on GitHub lets her share process files and inspire other curious builders around the world.',
+        'about.skillsTitle': 'Skills in Progress',
+        'about.skill1': 'Digital sketching on Android apps',
+        'about.skill2': 'Stop-motion experiments with clay models',
+        'about.skill3': 'Three.js fundamentals for playful 3D scenes',
+        'about.skill4': 'Color theory and storytelling workshops',
+        'gallery.heading': 'Creative Gallery',
+        'gallery.description': 'Swipe through the colourful "shabiha" snapshots—each artwork is captured with homemade lighting and a playful mix of craft paper, holographic foils, and photo overlays.',
+        'gallery.item1': 'Neon Skyline Dreams',
+        'gallery.item2': 'Code &amp; Canvas',
+        'gallery.item3': 'Dhaka Neon River',
+        'gallery.item4': 'Future Folk Dancer',
+        'gallery.button': 'Explore the dedicated gallery page',
+        'shop.heading': 'Shop Prints &amp; Digital Downloads',
+        'shop.description': "Support Sabiha's next art camp by purchasing limited edition pieces.",
+        'shop.product1.title': 'Moonlit Ashulia',
+        'shop.product1.text': 'High-resolution digital photo art, printable up to A2.',
+        'shop.product1.cta': 'Buy Digital Copy',
+        'shop.product2.title': 'River of Stories',
+        'shop.product2.text': 'Matte photo paper print, hand-signed with a mini doodle.',
+        'shop.product2.cta': 'Order Print',
+        'shop.product3.title': 'Pixel Folk Pack',
+        'shop.product3.text': 'Bundle of 5 mobile wallpapers with folk-inspired gradients.',
+        'shop.product3.cta': 'Download Pack',
+        'timeline.heading': 'Life History Timeline',
+        'timeline.card1.title': '2016 · First Brush',
+        'timeline.card1.text': 'Painted Eid lanterns with cousins and fell in love with colour.',
+        'timeline.card2.title': '2019 · School Wall Art',
+        'timeline.card2.text': "Led classmates to paint a mural highlighting Ashulia's rivers.",
+        'timeline.card3.title': '2022 · Animation Discovery',
+        'timeline.card3.text': 'Learned the basics of Blender and stop-motion miniatures.',
+        'timeline.card4.title': '2024 · GitHub Launch',
+        'timeline.card4.text': 'Published the Sabiha Art Gallery project with downloadable PSDs.',
+        'why.heading': 'Why 3D Animation?',
+        'why.text': 'Sabiha is fascinated by 3D forms because they let her sculpt emotions in mid-air. She mixes hand-drawn textures with simple cubes and spheres, then animates them to float across scenes representing Dhaka\'s rooftops. This website uses subtle 3D-inspired hover effects to echo her creative voice.',
+        'kind.heading': 'Kind Words',
+        'kind.quote1': '"Sabiha turns everyday school memories into futuristic postcards."',
+        'kind.by1': '— Art Teacher, Class 8',
+        'kind.quote2': '"Her GitHub uploads help my kids learn lighting tricks!"',
+        'kind.by2': '— Community Mentor',
+        'kind.quote3': '"Vibrant, fearless, and super curious about animation and storytelling."',
+        'kind.by3': '— Cousin &amp; Collaborator',
+        'contact.heading': 'Contact',
+        'contact.description': 'Say hi or request a commission:',
+        'contact.name': 'Name',
+        'contact.email': 'Email',
+        'contact.message': 'Message',
+        'contact.button': 'Send Message',
+        'footer.tagline': 'Designed with love in Ashulia, Dhaka • Hosted on GitHub Pages',
+        'galleryPage.heroTitle': "Sabiha's Gallery Universe",
+        'galleryPage.heroText': 'A dedicated space to explore her photo art, sketch studies, and colourful experiments in one scrollable wall.',
+        'galleryPage.heroSubtext': 'Each frame is handcrafted in Bangladesh with recycled craft paper, neon gels, and story prompts collected from friends.',
+        'galleryPage.spotlightHeading': 'Spotlight Collections',
+        'galleryPage.spotlightIntro': 'Hover over every card to feel the glow of Sabiha\'s favourite sets — from sci-fi street scenes to dreamy botanical portraits.',
+        'galleryPage.card1.title': 'Cyber Dhaka Crosswalks',
+        'galleryPage.card1.text': 'Bold reflections inspired by rainy evenings near the Turag River.',
+        'galleryPage.card2.title': 'Dream Botanica',
+        'galleryPage.card2.text': 'Macro photography layered with hand-drawn petals and glitter.',
+        'galleryPage.card3.title': 'Ashulia Skyscapes',
+        'galleryPage.card3.text': 'Cloud studies that mix pastel chalk with digital neon gradients.',
+        'galleryPage.card4.title': 'Folk Dancer Frames',
+        'galleryPage.card4.text': 'Stop-motion stills celebrating Meghla, her cousin and dance muse.',
+        'galleryPage.card5.title': 'Pixel Story Cubes',
+        'galleryPage.card5.text': '3D cubes printed on cardboard to teach perspective to friends.',
+        'galleryPage.card6.title': 'Festival Lights Series',
+        'galleryPage.card6.text': 'Long-exposure sparkler art from Eid nights in the neighbourhood.',
+        'galleryPage.processHeading': 'Behind the Scenes',
+        'galleryPage.processIntro': 'Sabiha documents each artwork like a mini science experiment so that other Bangladeshi kids can recreate the magic.',
+        'galleryPage.processStep1': 'Collects colour palettes from local saree shops and schoolyard flowers.',
+        'galleryPage.processStep2': 'Sketches storyboards in Bangla and English to practice bilingual storytelling.',
+        'galleryPage.processStep3': 'Edits using free Android apps, then publishes layered files on GitHub.',
+        'galleryPage.downloadHeading': 'Downloadable Sets',
+        'galleryPage.downloadIntro': 'Use these packs for wallpapers, zines, or class projects — credit Sabiha when you remix them!',
+        'galleryPage.download1.title': 'Bangla Neon Wallpaper Pack',
+        'galleryPage.download1.text': 'Six HD wallpapers featuring Bangla calligraphy blended with neon fog.',
+        'galleryPage.download1.cta': 'Get Wallpapers',
+        'galleryPage.download2.title': 'Printable Story Cards',
+        'galleryPage.download2.text': 'Twelve prompt cards that help you invent characters with friends.',
+        'galleryPage.download2.cta': 'Download Cards',
+        'galleryPage.download3.title': '3D Clay Mini Guide',
+        'galleryPage.download3.text': 'Step-by-step PDF showing how she builds tiny props for stop-motion.',
+        'galleryPage.download3.cta': 'Read the Guide',
+        'galleryPage.ctaHeading': 'Want a custom photo art series?',
+        'galleryPage.ctaText': 'Commission Sabiha for birthdays, school magazines, or community murals. She loves collaborating with curious kids and mentors.',
+        'galleryPage.ctaButton': 'Open the contact form'
+      },
+      bd: {
+        'nav.home': 'হোম',
+        'nav.about': 'পরিচিতি',
+        'nav.gallery': 'গ্যালারি',
+        'nav.galleryPage': 'গ্যালারি পেজ',
+        'nav.shop': 'দোকান',
+        'nav.journey': 'যাত্রা',
+        'nav.contact': 'যোগাযোগ',
+        'hero.intro': 'হ্যালো! আমি',
+        'hero.title': 'সাবিহা • উদীয়মান বাংলাদেশি শিল্প অন্বেষক',
+        'hero.description': 'আমি আশুলিয়া, ঢাকার ১৩ বছরের অষ্টম শ্রেণির শিক্ষার্থী। আমার আঁকিবুকি, ফটোগ্রাফি, 3D অনুপ্রাণিত স্কেচ আর উজ্জ্বল রং একসাথে মিশে পাড়ার গল্প ও জেনারেশন আলফার স্বপ্নকে জানায়। গিটহাবে তৈরি আমার ছোট্ট গ্যালারিতে স্বাগতম!',
+        'stats.sketches': 'স্কেচবুক স্টাডি',
+        'stats.photos': 'ফটো আর্ট প্রিন্ট',
+        'stats.exhibits': 'কমিউনিটি প্রদর্শনী',
+        'about.heading': 'সাবিহা সম্পর্কে',
+        'about.storyTitle': 'গল্প',
+        'about.storyText': 'তুরাগ নদীর পাড়ে বড় হয়ে সাবিহা স্কুলে শোনা গল্প থেকে উজ্জ্বল আকাশ আর ভবিষ্যৎ শহর আঁকে। তার ছবিতে গ্রামীণ মোটিফ আর ডিজিটাল গেম থেকে নেওয়া নিয়ন রঙ মিশে যায়। প্রতিদিনের জিনিসকে সাই-ফাই গল্পের উপকরণ বানাতে সে ভালোবাসে।',
+        'about.missionTitle': 'লক্ষ্য',
+        'about.missionText': '“শিল্প মানেই স্মৃতি বাঁচিয়ে রাখা।” সাবিহার স্বপ্ন একটি কমিউনিটি স্টুডিও গড়া যেখানে কিশোররা অঙ্কন, স্টোরিবোর্ড আর 3D অ্যানিমেশন শিখবে ফ্রি ওপেন সোর্স টুল দিয়ে। গিটহাব তার কাজের ফাইল ভাগ করে অন্য কৌতূহলী নির্মাতাদের অনুপ্রাণিত করতে সাহায্য করে।',
+        'about.skillsTitle': 'চলমান দক্ষতা',
+        'about.skill1': 'অ্যান্ড্রয়েড অ্যাপে ডিজিটাল স্কেচ',
+        'about.skill2': 'ক্লে মডেল দিয়ে স্টপ-মোশন পরীক্ষা',
+        'about.skill3': 'মজার 3D দৃশ্যের জন্য Three.js শেখা',
+        'about.skill4': 'রঙের তত্ত্ব ও গল্প বলার কর্মশালা',
+        'gallery.heading': 'সৃজনশীল গ্যালারি',
+        'gallery.description': 'রঙিন “শাবিহা” স্ন্যাপশট ঘেঁটে দেখুন—প্রতিটি আর্ট নিজ হাতে বানানো আলো আর ক্র্যাফট পেপার, হোলোগ্রাফিক ফয়েল ও ফটো লেয়ারের খেলা।',
+        'gallery.item1': 'নিয়ন স্কাইলাইন ড্রিমস',
+        'gallery.item2': 'কোড ও ক্যানভাস',
+        'gallery.item3': 'ঢাকা নিয়ন রিভার',
+        'gallery.item4': 'ফিউচার ফোক ড্যান্সার',
+        'gallery.button': 'ডেডিকেটেড গ্যালারি পেজ দেখুন',
+        'shop.heading': 'প্রিন্ট ও ডিজিটাল ডাউনলোড',
+        'shop.description': 'সাবিহার পরের আর্ট ক্যাম্পের জন্য লিমিটেড এডিশন পিস কিনে সহায়তা করুন।',
+        'shop.product1.title': 'মুনলিট আশুলিয়া',
+        'shop.product1.text': 'উচ্চ রেজোলিউশনের ডিজিটাল ফটো আর্ট, A2 পর্যন্ত প্রিন্ট করা যায়।',
+        'shop.product1.cta': 'ডিজিটাল কপি কিনুন',
+        'shop.product2.title': 'রিভার অব স্টোরিজ',
+        'shop.product2.text': 'ম্যাট ফটো পেপারে প্রিন্ট, হাতে আঁকা ছোট্ট ডুডলসহ।',
+        'shop.product2.cta': 'প্রিন্ট অর্ডার করুন',
+        'shop.product3.title': 'পিক্সেল ফোক প্যাক',
+        'shop.product3.text': 'ফোক অনুপ্রাণিত গ্রেডিয়েন্টসহ পাঁচটি মোবাইল ওয়ালপেপারের বান্ডল।',
+        'shop.product3.cta': 'প্যাক ডাউনলোড করুন',
+        'timeline.heading': 'জীবনযাত্রার টাইমলাইন',
+        'timeline.card1.title': '২০১৬ · প্রথম তুলি',
+        'timeline.card1.text': 'কাজিনদের সঙ্গে ঈদের ফানুস রাঙিয়ে রঙের প্রেমে পড়া।',
+        'timeline.card2.title': '২০১৯ · স্কুল ওয়াল আর্ট',
+        'timeline.card2.text': 'সহপাঠীদের নিয়ে আশুলিয়ার নদীর গল্প দেয়ালে আঁকা।',
+        'timeline.card3.title': '২০২২ · অ্যানিমেশন আবিষ্কার',
+        'timeline.card3.text': 'ব্লেন্ডার আর স্টপ-মোশন মিনিয়েচার শেখার শুরু।',
+        'timeline.card4.title': '২০২৪ · গিটহাব লঞ্চ',
+        'timeline.card4.text': 'ডাউনলোডযোগ্য PSDসহ সাবিহা আর্ট গ্যালারি প্রকাশ।',
+        'why.heading': 'কেন 3D অ্যানিমেশন?',
+        'why.text': 'সাবিহা 3D ফর্মে মুগ্ধ কারণ এগুলো দিয়ে মাঝ-আকাশে অনুভূতি ভাসাতে পারে। হাতে আঁকা টেক্সচার আর সহজ ঘনক-গোলক মিশিয়ে সে ঢাকার ছাদ অনুপ্রাণিত দৃশ্যে অ্যানিমেট করে। এই ওয়েবসাইটের হোভার এফেক্টও সেই কণ্ঠস্বর বহন করে।',
+        'kind.heading': 'সৌজন্যমূলক কথা',
+        'kind.quote1': '“সাবিহা প্রতিদিনের স্কুল স্মৃতিকে ভবিষ্যৎ পোস্টকার্ডে বদলে দেয়।”',
+        'kind.by1': '— আর্ট শিক্ষক, অষ্টম শ্রেণি',
+        'kind.quote2': '“তার গিটহাব আপলোডে আমার বাচ্চারা লাইটিং ট্রিক শিখে!”',
+        'kind.by2': '— কমিউনিটি মেন্টর',
+        'kind.quote3': '“রঙিন, নির্ভীক এবং গল্প বলায় দারুণ কৌতূহলী।”',
+        'kind.by3': '— কাজিন ও সহযোগী',
+        'contact.heading': 'যোগাযোগ',
+        'contact.description': 'অভিবাদন বা কমিশনের জন্য লিখুন:',
+        'contact.name': 'নাম',
+        'contact.email': 'ইমেল',
+        'contact.message': 'বার্তা',
+        'contact.button': 'বার্তা পাঠান',
+        'footer.tagline': 'ভালোবাসা দিয়ে তৈরি আশুলিয়া, ঢাকা · গিটহাব পেজে হোস্ট করা',
+        'galleryPage.heroTitle': 'সাবিহার গ্যালারি ইউনিভার্স',
+        'galleryPage.heroText': 'এই আলাদা পেজে ফটো আর্ট, স্কেচ স্টাডি আর রঙিন পরীক্ষামূলক কাজ একসঙ্গে দেখুন।',
+        'galleryPage.heroSubtext': 'প্রতিটি ফ্রেম বাংলাদেশে তৈরি, রিসাইকেল্ড ক্র্যাফট পেপার, নিয়ন জেল ও বন্ধুদের গল্পের বীজ দিয়ে।',
+        'galleryPage.spotlightHeading': 'স্পটলাইট কালেকশন',
+        'galleryPage.spotlightIntro': 'প্রতিটি কার্ডে হোভার করলে সাবিহার প্রিয় সেটের জৌলুস টের পাবেন—সাই-ফাই রাস্তা থেকে স্বপ্নিল গাছগাছালি পর্যন্ত।',
+        'galleryPage.card1.title': 'সাইবার ঢাকা ক্রসওয়াক',
+        'galleryPage.card1.text': 'তুরাগ নদীর ভেজা সন্ধ্যা থেকে অনুপ্রাণিত তীক্ষ্ণ প্রতিবিম্ব।',
+        'galleryPage.card2.title': 'ড্রিম বোটানিকা',
+        'galleryPage.card2.text': 'হাতে আঁকা পাপড়ি আর গ্লিটার মেশানো ম্যাক্রো ফটোগ্রাফি।',
+        'galleryPage.card3.title': 'আশুলিয়া স্কাইস্কেপ',
+        'galleryPage.card3.text': 'প্যাস্টেল চক আর ডিজিটাল নিয়ন দিয়ে আঁকা মেঘের স্টাডি।',
+        'galleryPage.card4.title': 'ফোক ড্যান্সার ফ্রেম',
+        'galleryPage.card4.text': 'কাজিন মেঘলাকে নিয়ে স্টপ-মোশন সেলিব্রেশন।',
+        'galleryPage.card5.title': 'পিক্সেল স্টোরি কিউব',
+        'galleryPage.card5.text': 'কার্ডবোর্ডে মুদ্রিত 3D কিউব বন্ধুরা পার্সপেক্টিভ বুঝতে ব্যবহার করে।',
+        'galleryPage.card6.title': 'ফেস্টিভ্যাল লাইট সিরিজ',
+        'galleryPage.card6.text': 'পাড়ার ঈদ রাতে আতশবাজির লং এক্সপোজার আর্ট।',
+        'galleryPage.processHeading': 'পর্দার আড়ালে',
+        'galleryPage.processIntro': 'বাংলাদেশের বাচ্চারা যেন পুনর্নির্মাণ করতে পারে, তাই সাবিহা প্রতিটি আর্টকে ক্ষুদে বিজ্ঞান পরীক্ষার মতো নথিবদ্ধ করে।',
+        'galleryPage.processStep1': 'স্থানীয় শাড়ির দোকান আর স্কুলের ফুল থেকে রঙের প্যালেট সংগ্রহ করে।',
+        'galleryPage.processStep2': 'বাংলা ও ইংরেজিতে স্টোরিবোর্ড লিখে দ্বিভাষিক গল্প বলার অনুশীলন করে।',
+        'galleryPage.processStep3': 'ফ্রি অ্যান্ড্রয়েড অ্যাপে এডিট করে লেয়ারযুক্ত ফাইল গিটহাবে আপলোড করে।',
+        'galleryPage.downloadHeading': 'ডাউনলোড সেট',
+        'galleryPage.downloadIntro': 'ওয়ালপেপার, জিন বা ক্লাস প্রজেক্টে ব্যবহার করুন — রিমিক্স করলে সাবিহাকে কৃতিত্ব দিন!',
+        'galleryPage.download1.title': 'বাংলা নিয়ন ওয়ালপেপার প্যাক',
+        'galleryPage.download1.text': 'বাংলা ক্যালিগ্রাফি আর নিয়ন কুয়াশা মেশানো ছয়টি HD ওয়ালপেপার।',
+        'galleryPage.download1.cta': 'ওয়ালপেপার নিন',
+        'galleryPage.download2.title': 'প্রিন্টেবল স্টোরি কার্ড',
+        'galleryPage.download2.text': 'বারোটি প্রম্পট কার্ড যা দিয়ে বন্ধুদের সাথে চরিত্র বানাতে পারবেন।',
+        'galleryPage.download2.cta': 'কার্ড ডাউনলোড করুন',
+        'galleryPage.download3.title': '3D ক্লে মিনি গাইড',
+        'galleryPage.download3.text': 'কীভাবে স্টপ-মোশনের ক্ষুদ্র প্রপ বানায় তার ধাপে ধাপে PDF।',
+        'galleryPage.download3.cta': 'গাইড পড়ুন',
+        'galleryPage.ctaHeading': 'কাস্টম ফটো আর্ট সিরিজ চান?',
+        'galleryPage.ctaText': 'জন্মদিন, স্কুল ম্যাগাজিন বা কমিউনিটি মুরালের জন্য সাবিহাকে কমিশন করুন। কৌতূহলী বাচ্চা ও মেন্টরের সাথে কাজ করতে সে ভালোবাসে।',
+        'galleryPage.ctaButton': 'যোগাযোগ ফর্ম খুলুন'
+      }
+    };
+
+    const floating = document.querySelector('.floating-shapes');
+    const createShape = () => {
+      const span = document.createElement('span');
+      const size = Math.random() * 120 + 60;
+      span.style.width = `${size}px`;
+      span.style.height = `${size}px`;
+      span.style.left = Math.random() * 100 + '%';
+      span.style.top = Math.random() * 100 + '%';
+      span.style.animationDuration = `${Math.random() * 10 + 12}s`;
+      span.style.animationDelay = `${Math.random() * 5}s`;
+      floating.appendChild(span);
+      setTimeout(() => span.remove(), 25000);
+    };
+
+    for (let i = 0; i < 8; i += 1) {
+      createShape();
+    }
+    setInterval(createShape, 4000);
+
+    const languageButtons = document.querySelectorAll('[data-lang-btn]');
+    const setLanguage = (lang) => {
+      const safeLang = translations[lang] ? lang : 'en';
+      document.documentElement.setAttribute('lang', safeLang === 'bd' ? 'bn' : 'en');
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.dataset.i18n;
+        const text = translations[safeLang][key];
+        if (text) {
+          node.innerHTML = text;
+        }
+      });
+      languageButtons.forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.langBtn === safeLang);
+      });
+      try {
+        localStorage.setItem('sabiha-lang', safeLang);
+      } catch (error) {
+        // ignore storage errors
+      }
+    };
+
+    languageButtons.forEach((btn) => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn));
+    });
+
+    const storedLang = (() => {
+      try {
+        return localStorage.getItem('sabiha-lang');
+      } catch (error) {
+        return null;
+      }
+    })();
+    setLanguage(storedLang || 'en');
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

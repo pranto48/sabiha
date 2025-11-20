@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1700" role="img" aria-labelledby="title desc">
+  <title id="title">Royal portrait of siblings</title>
+  <desc id="desc">A young girl in a blue gown with a crown standing beside her brother in a cream suit.</desc>
+  <defs>
+    <linearGradient id="drape" x1="0" x2="1">
+      <stop offset="0%" stop-color="#d4323c"/>
+      <stop offset="100%" stop-color="#a81424"/>
+    </linearGradient>
+    <linearGradient id="gown" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#4e8bff"/>
+      <stop offset="100%" stop-color="#2c62d8"/>
+    </linearGradient>
+    <linearGradient id="crown" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffd56a"/>
+      <stop offset="100%" stop-color="#ffb347"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1700" fill="#f4e1c7"/>
+  <rect x="-50" y="0" width="380" height="1700" fill="url(#drape)"/>
+  <rect x="1070" y="0" width="380" height="1700" fill="url(#drape)"/>
+  <rect x="280" y="0" width="840" height="1700" fill="#f7ead7"/>
+  <circle cx="700" cy="500" r="260" fill="#fdf3e3"/>
+  <g transform="translate(550 620)">
+    <path d="M150 160 q-60 -30 -120 120 q-60 150 -20 340 q40 190 220 190 q180 0 220 -190 q40 -190 -20 -340 q-60 -150 -120 -120 z" fill="url(#gown)" stroke="#194bb2" stroke-width="14"/>
+    <path d="M140 210 q-70 120 -70 200 q0 60 60 60 h240 q60 0 60 -60 q0 -80 -70 -200" fill="#3a70de" opacity="0.5"/>
+    <circle cx="150" cy="40" r="130" fill="#fce3c3"/>
+    <circle cx="370" cy="40" r="130" fill="#f7d9b5"/>
+    <circle cx="260" cy="-50" r="140" fill="#1f1a16"/>
+    <rect x="90" y="-80" width="340" height="140" rx="70" fill="#2a241f"/>
+    <circle cx="190" cy="40" r="22" fill="#0f1015"/>
+    <circle cx="330" cy="40" r="22" fill="#0f1015"/>
+    <path d="M210 80 q50 40 100 0" stroke="#0f1015" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 -50 l40 70 l40 -70 l40 70 l40 -70" fill="url(#crown)" stroke="#b57a1a" stroke-width="10"/>
+    <circle cx="220" cy="-40" r="10" fill="#ffe48a"/>
+    <circle cx="260" cy="-30" r="10" fill="#ffe48a"/>
+    <circle cx="300" cy="-40" r="10" fill="#ffe48a"/>
+    <path d="M380 210 q120 60 120 310 q0 160 -120 200" fill="#e8ddce" stroke="#d1c4b5" stroke-width="14"/>
+    <path d="M40 210 q-120 60 -120 310 q0 160 120 200" fill="#0f1117" stroke="#090b11" stroke-width="14"/>
+    <rect x="-60" y="420" width="170" height="320" rx="70" fill="#1c1e27"/>
+    <rect x="420" y="420" width="170" height="320" rx="70" fill="#e6ddc7"/>
+  </g>
+  <g transform="translate(350 760)">
+    <rect x="0" y="260" width="180" height="520" rx="80" fill="#efe7db" stroke="#d9cfbf" stroke-width="12"/>
+    <rect x="90" y="320" width="280" height="480" rx="120" fill="#efe7db" stroke="#d9cfbf" stroke-width="12"/>
+    <rect x="250" y="320" width="180" height="480" rx="80" fill="#efe7db" stroke="#d9cfbf" stroke-width="12"/>
+    <circle cx="230" cy="140" r="140" fill="#f9e8d6" stroke="#d9cfbf" stroke-width="12"/>
+    <rect x="90" y="40" width="280" height="160" rx="80" fill="#eae1d2"/>
+    <circle cx="190" cy="150" r="24" fill="#0f1015"/>
+    <circle cx="270" cy="150" r="24" fill="#0f1015"/>
+    <path d="M190 190 q40 34 80 0" stroke="#0f1015" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <rect x="-20" y="440" width="200" height="170" rx="70" fill="#d4323c" opacity="0.35"/>
+  </g>
+</svg>

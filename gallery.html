@@ -191,6 +191,130 @@
       gap: 0.4rem;
     }
 
+    .feature-ribbon {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255, 90, 195, 0.18), rgba(128, 255, 234, 0.12)), var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .feature-ribbon::before,
+    .feature-ribbon::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 224, 92, 0.55), transparent 60%);
+      filter: blur(45px);
+      opacity: 0.7;
+      animation: float 14s ease-in-out infinite;
+    }
+
+    .feature-ribbon::after {
+      right: -40px;
+      top: -60px;
+    }
+
+    .feature-ribbon::before {
+      left: -60px;
+      bottom: -80px;
+      background: radial-gradient(circle, rgba(128, 255, 234, 0.45), transparent 60%);
+    }
+
+    .ribbon-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .ribbon-badge {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .feature-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1.4rem;
+      margin-top: 1.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .feature-card {
+      position: relative;
+      padding: 1.2rem;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 90, 195, 0.1), rgba(128, 255, 234, 0.08));
+      pointer-events: none;
+    }
+
+    .polaroid {
+      position: relative;
+      background: #0b0c21;
+      padding: 0.5rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      min-height: 260px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .glow-band {
+      position: absolute;
+      inset: 10px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 224, 92, 0.5);
+      animation: pulse 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .feature-copy {
+      position: relative;
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .feature-copy h3 {
+      font-size: 1.2rem;
+    }
+
+    .feature-copy p {
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+
     ul.process-list {
       list-style: decimal-leading-zero;
       padding-left: 1.3rem;
@@ -303,6 +427,46 @@
   </header>
 
   <main>
+    <section id="new-arrivals" class="feature-ribbon">
+      <div class="ribbon-head">
+        <span class="ribbon-badge" data-i18n="galleryPage.newBadge">Fresh Drop</span>
+        <h2 data-i18n="galleryPage.newHeading">Storybook Portraits</h2>
+        <p data-i18n="galleryPage.newIntro">Three whimsical scenes inspired by Sabiha's playful photo art — remixed into vibrant SVG illustrations so the gallery feels alive on any screen.</p>
+      </div>
+      <div class="feature-row">
+        <article class="feature-card">
+          <div class="polaroid">
+            <span class="glow-band" aria-hidden="true"></span>
+            <img src="assets/art/pink-garden.svg" alt="Pink-haired character holding a heart purse among daisies" />
+          </div>
+          <div class="feature-copy">
+            <h3 data-i18n="galleryPage.new1.title">Garden Daydream</h3>
+            <p data-i18n="galleryPage.new1.text">A pastel park moment based on Sabiha's sketchbook mascot, carrying a heart satchel and smiling toward the viewer.</p>
+          </div>
+        </article>
+        <article class="feature-card">
+          <div class="polaroid">
+            <span class="glow-band" aria-hidden="true"></span>
+            <img src="assets/art/royal-portrait.svg" alt="Girl in a royal blue gown with a crown beside a boy in a cream suit" />
+          </div>
+          <div class="feature-copy">
+            <h3 data-i18n="galleryPage.new2.title">Velvet Royalty</h3>
+            <p data-i18n="galleryPage.new2.text">Sibling harmony rendered in jewel blues and golds — a nod to the ornate portraits Sabiha practices with coloured pencils.</p>
+          </div>
+        </article>
+        <article class="feature-card">
+          <div class="polaroid">
+            <span class="glow-band" aria-hidden="true"></span>
+            <img src="assets/art/balcony-wave.svg" alt="Two crowned siblings waving from a golden balcony" />
+          </div>
+          <div class="feature-copy">
+            <h3 data-i18n="galleryPage.new3.title">Balcony Parade</h3>
+            <p data-i18n="galleryPage.new3.text">A celebratory wave captured as a digital postcard, balancing royal drapes with bright courtyard skies.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="spotlight">
       <h2 data-i18n="galleryPage.spotlightHeading">Spotlight Collections</h2>
       <p data-i18n="galleryPage.spotlightIntro">Hover over every card to feel the glow of Sabiha's favourite sets — from sci-fi street scenes to dreamy botanical portraits.</p>
@@ -468,6 +632,15 @@
         'galleryPage.heroTitle': "Sabiha's Gallery Universe",
         'galleryPage.heroText': 'A dedicated space to explore her photo art, sketch studies, and colourful experiments in one scrollable wall.',
         'galleryPage.heroSubtext': 'Each frame is handcrafted in Bangladesh with recycled craft paper, neon gels, and story prompts collected from friends.',
+        'galleryPage.newBadge': 'Fresh Drop',
+        'galleryPage.newHeading': 'Storybook Portraits',
+        'galleryPage.newIntro': 'Three whimsical scenes inspired by Sabiha\'s playful photo art — remixed into vibrant SVG illustrations so the gallery feels alive on any screen.',
+        'galleryPage.new1.title': 'Garden Daydream',
+        'galleryPage.new1.text': 'A pastel park moment based on Sabiha\'s sketchbook mascot, carrying a heart satchel and smiling toward the viewer.',
+        'galleryPage.new2.title': 'Velvet Royalty',
+        'galleryPage.new2.text': 'Sibling harmony rendered in jewel blues and golds — a nod to the ornate portraits Sabiha practices with coloured pencils.',
+        'galleryPage.new3.title': 'Balcony Parade',
+        'galleryPage.new3.text': 'A celebratory wave captured as a digital postcard, balancing royal drapes with bright courtyard skies.',
         'galleryPage.spotlightHeading': 'Spotlight Collections',
         'galleryPage.spotlightIntro': 'Hover over every card to feel the glow of Sabiha\'s favourite sets — from sci-fi street scenes to dreamy botanical portraits.',
         'galleryPage.card1.title': 'Cyber Dhaka Crosswalks',
@@ -572,6 +745,15 @@
         'galleryPage.heroTitle': 'সাবিহার গ্যালারি ইউনিভার্স',
         'galleryPage.heroText': 'এই আলাদা পেজে ফটো আর্ট, স্কেচ স্টাডি আর রঙিন পরীক্ষামূলক কাজ একসঙ্গে দেখুন।',
         'galleryPage.heroSubtext': 'প্রতিটি ফ্রেম বাংলাদেশে তৈরি, রিসাইকেল্ড ক্র্যাফট পেপার, নিয়ন জেল ও বন্ধুদের গল্পের বীজ দিয়ে।',
+        'galleryPage.newBadge': 'নতুন ড্রপ',
+        'galleryPage.newHeading': 'স্টোরিবুক পোর্ট্রেট',
+        'galleryPage.newIntro': 'সাবিহার খেলাভরা ফটো আর্ট থেকে অনুপ্রাণিত তিনটি রূপকথার দৃশ্য—উজ্জ্বল SVG ইলাস্ট্রেশন হিসেবে প্রাণবন্ত থাকে।',
+        'galleryPage.new1.title': 'বাগানের দিবাস্বপ্ন',
+        'galleryPage.new1.text': 'স্কেচবুকের মাসকট থেকে তৈরি পার্ক মুহূর্ত, হার্ট ব্যাগ হাতে হাসিখুশি ভঙ্গি।',
+        'galleryPage.new2.title': 'মখমলি রাজকীয়তা',
+        'galleryPage.new2.text': 'নীল-সোনালি ছন্দে দুই ভাইবোন—রঙিন পেন্সিলে আঁকা অলংকৃত পোর্ট্রেটের প্রতি সাবিহার টানে।',
+        'galleryPage.new3.title': 'বারান্দার শোভাযাত্রা',
+        'galleryPage.new3.text': 'লাল পর্দার পাশে খোলা আকাশ, রাজকীয় হাত নাড়ার ডাকে রঙিন পোস্টকার্ড মুহূর্ত।',
         'galleryPage.spotlightHeading': 'স্পটলাইট কালেকশন',
         'galleryPage.spotlightIntro': 'প্রতিটি কার্ডে হোভার করলে সাবিহার প্রিয় সেটের জৌলুস টের পাবেন—সাই-ফাই রাস্তা থেকে স্বপ্নিল গাছগাছালি পর্যন্ত।',
         'galleryPage.card1.title': 'সাইবার ঢাকা ক্রসওয়াক',
